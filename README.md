@@ -4,7 +4,7 @@ aou.bucket contains functions to read, write, copy, and remove files from the wo
 # Installation
 In an R notebook on the AOU workbench:
 ```r
-devtools::install_github("annisjs/aou.bucket,upgrade=F)
+devtools::install_github("annisjs/aou.bucket",upgrade=F)
 ```
 
 # Example
