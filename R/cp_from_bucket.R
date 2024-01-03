@@ -15,5 +15,5 @@
 cp_from_bucket <- function(from,to)
 {
   bucket <- Sys.getenv("WORKSPACE_BUCKET")
-  system(str_glue("gsutil cp {bucket}/{from} {to}"),intern=TRUE)
+  system(stringr::str_glue("gsutil cp {bucket}/{from} {to}"),intern=TRUE)
 }

@@ -11,8 +11,8 @@ ls_bucket <- function(folder=NULL) {
   bucket <- Sys.getenv("WORKSPACE_BUCKET")
   if (is.null(folder))
   {
-    system(str_glue("gsutil ls {bucket}"),intern=TRUE)
+    system(stringr::str_glue("gsutil ls {bucket}"),intern=TRUE)
   } else {
-    system(str_glue("gsutil ls {bucket}/{folder}"),intern=TRUE)
+    system(stringr::str_glue("gsutil ls {bucket}/{folder}"),intern=TRUE)
   }
 }

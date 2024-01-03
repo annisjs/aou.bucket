@@ -10,5 +10,5 @@
 rm_bucket <- function(path)
 {
   bucket <- Sys.getenv("WORKSPACE_BUCKET")
-  system(str_glue("gsutil rm {bucket}/{path}"),intern=TRUE)
+  system(stringr::str_glue("gsutil rm {bucket}/{path}"),intern=TRUE)
 }
