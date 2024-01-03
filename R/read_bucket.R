@@ -8,6 +8,7 @@
 #' \dontrun{
 #' dat <- read_bucket("my_data.csv")
 #' }
+#' @export
 read_bucket <- function(file) {
     col_types <- NULL
     #Check if the bucket is provided. If not, append.

@@ -3,4 +3,5 @@
 export(cp_from_bucket)
 export(cp_to_bucket)
 export(ls_bucket)
+export(read_bucket)
 export(rm_bucket)
