@@ -22,6 +22,7 @@ read_bucket <- function(file) {
     f <- basename(files)
     system(paste0(c("gsutil -m cp ",files,"."),collapse=" "),intern=T)
     dat_list <- lapply(f,data.table::fread)
+    lapply(f,file.remove)
     out <- data.table::rbindlist(dat_list)
     return(out)
 }
