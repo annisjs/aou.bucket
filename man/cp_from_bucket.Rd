@@ -22,5 +22,8 @@ file.remove("mydata.csv")
 list.files() # mydata.csv is not listed
 cp_from_bucket("mydata.csv",".")
 list.files() # mydata.csv has been copied
+
+# Copy from an arbitrary bucket
+cp_from_bucket("gs://fc-secure-123/myfile.csv","myfile.csv") 
 }
 }

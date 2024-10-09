@@ -14,7 +14,8 @@ List the files in a bucket directory
 }
 \examples{
 \dontrun{
-ls_bucket() #files in the base workspace directory
-ls_bucket("notebooks") #files in the "notebooks" workspace directory
+ls_bucket() # Files in the current workspace directory
+ls_bucket("notebooks") # Files in the "notebooks" workspace directory
+ls_bucket("gs://fc-secure-1234") # Files in another workspace
 }
 }

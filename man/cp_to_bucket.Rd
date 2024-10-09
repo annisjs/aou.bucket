@@ -19,5 +19,8 @@ Copy a file to the bucket
 write.csv(c(1,2,3),"mydata.csv")
 cp_to_bucket("mydata.csv","mydata.csv")
 dat <- read_bucket("mydata.csv")
+
+# Copy to an arbitrary bucket
+cp_to_bucket("myfile.csv","gs://fc-secure-123/myfile.csv")
 }
 }

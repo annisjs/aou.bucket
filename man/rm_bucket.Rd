@@ -17,5 +17,8 @@ Remove a file from the workspace bucket
 write.csv(c(1,2,3),"mydata.csv")
 cp_to_bucket("mydata.csv","mydata.csv")
 rm_bucket("mydata.csv")
+
+# Remove file from arbitrary bucket
+rm_bucket("gs://fc-secure-123/myfile.csv")
 }
 }

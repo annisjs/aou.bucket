@@ -6,10 +6,18 @@
 #' write.csv(c(1,2,3),"mydata.csv")
 #' cp_to_bucket("mydata.csv","mydata.csv")
 #' dat <- read_bucket("mydata.csv")
+#' 
+#' # Copy to an arbitrary bucket
+#' cp_to_bucket("myfile.csv","gs://fc-secure-123/myfile.csv")
 #' }
 #' @export
 cp_to_bucket <- function(from,to)
 {
-  bucket <- Sys.getenv("WORKSPACE_BUCKET")
-  system(stringr::str_glue("gsutil cp {from} {bucket}/{to}"),intern=TRUE)
+    bucket <- Sys.getenv("WORKSPACE_BUCKET")
+    bucket_provided <- grepl("^gs://",to)
+    if (!bucket_provided)
+    {
+        to <- str_glue("{bucket}/{to}")
+    }
+    system(stringr::str_glue("gsutil cp {from} {to}"),intern=TRUE)
 }
