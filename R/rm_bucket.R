@@ -16,7 +16,7 @@ rm_bucket <- function(path)
     bucket_provided <- grepl("^gs://",path)
     if (!bucket_provided)
     {
-        path <- str_glue("{bucket}/{path}")
+        path <- stringr::str_glue("{bucket}/{path}")
     }
     system(stringr::str_glue("gsutil rm {path}"),intern=TRUE)
 }

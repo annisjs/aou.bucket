@@ -17,7 +17,7 @@ cp_to_bucket <- function(from,to)
     bucket_provided <- grepl("^gs://",to)
     if (!bucket_provided)
     {
-        to <- str_glue("{bucket}/{to}")
+        to <- stringr::str_glue("{bucket}/{to}")
     }
     system(stringr::str_glue("gsutil cp {from} {to}"),intern=TRUE)
 }
