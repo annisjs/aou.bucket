@@ -18,5 +18,5 @@ rm_bucket <- function(path)
     {
         path <- stringr::str_glue("{bucket}/{path}")
     }
-    system(stringr::str_glue("gsutil rm {path}"),intern=TRUE)
+    system(stringr::str_glue("gcloud storage rm {path}"),intern=TRUE)
 }

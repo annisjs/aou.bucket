@@ -22,5 +22,5 @@ ls_bucket <- function(folder=NULL) {
             path <- folder
         }
     }
-    system(stringr::str_glue("gsutil ls {path}"),intern=TRUE)  
+    system(stringr::str_glue("gcloud storage ls {path}"),intern=TRUE)  
 }

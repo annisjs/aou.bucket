@@ -19,5 +19,5 @@ cp_to_bucket <- function(from,to)
     {
         to <- stringr::str_glue("{bucket}/{to}")
     }
-    system(stringr::str_glue("gsutil cp {from} {to}"),intern=TRUE)
+    system(stringr::str_glue("gcloud storage cp {from} {to} --gzip-in-flight-all"),intern=TRUE)
 }
