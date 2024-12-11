@@ -18,6 +18,12 @@ all packages from the bucket will sync to the local storage. This should save th
 }
 \examples{
 \dontrun{
+# This can be placed at the top of the notebook:
+if (!require("aou.bucket"))
+{
+   devtools::install_github("annisjs/aou.bucket", upgrade = F)
+   require(aou.bucket)
+}
 sync_packages()
 }
 }

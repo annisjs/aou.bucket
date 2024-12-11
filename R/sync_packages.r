@@ -1,6 +1,12 @@
 #' Sync packages between workspace and bucket
 #' @examples 
 #' \dontrun{
+#' # This can be placed at the top of the notebook:
+#' if (!require("aou.bucket"))
+#' {
+#'    devtools::install_github("annisjs/aou.bucket", upgrade = F)
+#'    require(aou.bucket)
+#' }
 #' sync_packages()
 #' }
 #' @details Syncing is done by first syncing local packages to the bucket. Packages are then synced from the bucket to local storage.
