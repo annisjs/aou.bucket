@@ -20,7 +20,12 @@ read_bucket <- function(file) {
     }
     files <- system2('gcloud', args = c('storage ls', file), stdout = TRUE, stderr = TRUE)
     f <- basename(files)
-    system(paste0(c("gcloud storage cp ",files,"."),collapse=" "),intern=T)
+    if (length(files)>500){
+        file_splits = split(files, ceiling(seq_along(files)/500))
+        lapply(file_splits,function(file_split){system(paste0(c("gcloud storage cp ",file_split,"."),collapse=" "),intern=T)})
+    }else{
+        system(paste0(c("gcloud storage cp ",files,"."),collapse=" "),intern=T)
+    }
     dat_list <- lapply(f,data.table::fread)
     lapply(f,file.remove)
     out <- data.table::rbindlist(dat_list)
