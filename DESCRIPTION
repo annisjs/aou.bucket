@@ -14,4 +14,4 @@ Imports:
   stringr,
   data.table
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
