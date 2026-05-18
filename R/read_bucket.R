@@ -9,7 +9,7 @@
 #' dat <- read_bucket("my_data.csv")
 #' }
 #' @export
-read_bucket <- function(file) {
+read_bucket <- function(file, verbose = FALSE) {
     col_types <- NULL
     #Check if the bucket is provided. If not, append.
     bucket_provided <- grepl("^gs://",file)
@@ -29,13 +29,12 @@ read_bucket <- function(file) {
         system(paste0(c("gcloud storage cp", files, tmp_dir), collapse = " "), intern = T)
     }
     f <- file.path(tmp_dir, f)
-    
-    pb <- txtProgressBar(min = 0, max = length(files), initial = 0, style = 3)
+    if (verbose) pb <- txtProgressBar(min = 0, max = length(files), initial = 0, style = 3)
     dat_list <- NULL
     for (i in seq_along(f))
     {
         dat_list[[i]] <- data.table::fread(f[i])
-        setTxtProgressBar(pb, i)
+        if (verbose) setTxtProgressBar(pb, i)
     }
     rbindlist(dat_list)
     lapply(f, file.remove)
