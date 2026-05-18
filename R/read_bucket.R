@@ -20,14 +20,25 @@ read_bucket <- function(file) {
     }
     files <- system2('gcloud', args = c('storage ls', file), stdout = TRUE, stderr = TRUE)
     f <- basename(files)
+    tmp_dir <- file.path(system("echo $HOME", intern = T), "workspace", "aou.bucket.tmp")
+    dir.create(tmp_dir, showWarnings = FALSE)
     if (length(files)>500){
         file_splits = split(files, ceiling(seq_along(files)/500))
-        lapply(file_splits,function(file_split){system(paste0(c("gcloud storage cp ",file_split,"."),collapse=" "),intern=T)})
+        lapply(file_splits,function(file_split){system(paste0(c("gcloud storage cp ", file_split, tmp_dir),collapse=" "),intern=T)})
     }else{
-        system(paste0(c("gcloud storage cp ",files,"."),collapse=" "),intern=T)
+        system(paste0(c("gcloud storage cp", files, tmp_dir), collapse = " "), intern = T)
     }
-    dat_list <- lapply(f,data.table::fread)
-    lapply(f,file.remove)
+    f <- file.path(tmp_dir, f)
+    
+    pb <- txtProgressBar(min = 0, max = length(files), initial = 0, style = 3)
+    dat_list <- NULL
+    for (i in seq_along(f))
+    {
+        dat_list[[i]] <- data.table::fread(f[i])
+        setTxtProgressBar(pb, i)
+    }
+    rbindlist(dat_list)
+    lapply(f, file.remove)
     out <- data.table::rbindlist(dat_list)
     return(out)
 }
