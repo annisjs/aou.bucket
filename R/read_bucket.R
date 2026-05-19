@@ -36,7 +36,7 @@ read_bucket <- function(file, verbose = FALSE) {
         dat_list[[i]] <- data.table::fread(f[i])
         if (verbose) setTxtProgressBar(pb, i)
     }
-    data.table::bindlist(dat_list)
+    data.table::rbindlist(dat_list)
     lapply(f, file.remove)
     out <- data.table::rbindlist(dat_list)
     return(out)
