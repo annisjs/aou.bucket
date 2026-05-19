@@ -20,7 +20,7 @@ read_bucket <- function(file, verbose = FALSE) {
     }
     files <- system2('gcloud', args = c('storage ls', file), stdout = TRUE, stderr = TRUE)
     f <- basename(files)
-    tmp_dir <- file.path(system("echo $HOME", intern = T), "workspace", "aou.bucket.tmp")
+    tmp_dir <- file.path(system("echo $HOME", intern = T), "workspace")
     dir.create(tmp_dir, showWarnings = FALSE)
     if (length(files)>500){
         file_splits = split(files, ceiling(seq_along(files)/500))
