@@ -4,7 +4,7 @@
 \alias{read_bucket}
 \title{Read bucket}
 \usage{
-read_bucket(file)
+read_bucket(file, verbose = FALSE)
 }
 \arguments{
 \item{file}{the file name}

@@ -18,6 +18,7 @@
 sync_packages <- function()
 {
   my_bucket <- Sys.getenv("WORKSPACE_BUCKET")
-  system(stringr::str_glue("gcloud storage rsync /home/jupyter/packages {my_bucket}/packages --recursive"),intern=T)
-  system(stringr::str_glue("gcloud storage rsync {my_bucket}/packages /home/jupyter/packages --recursive"),intern=T)
+  lib_path <- .libPaths()[1]
+  system(stringr::str_glue("gcloud storage rsync {lib_path} {my_bucket}/packages --recursive"),intern=T)
+  system(stringr::str_glue("gcloud storage rsync {my_bucket}/packages {lib_path} --recursive"),intern=T)
 }
