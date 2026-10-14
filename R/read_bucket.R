@@ -19,6 +19,7 @@ read_bucket <- function(file, verbose = FALSE) {
         file <- stringr::str_glue("{bucket}/{file}")
     }
     files <- system2('gcloud', args = c('storage ls', file), stdout = TRUE, stderr = TRUE)
+    files <- files[!grepl("/$", files)]
     f <- basename(files)
     tmp_dir <- file.path(system("echo $HOME", intern = T), "workspace")
     dir.create(tmp_dir, showWarnings = FALSE)
